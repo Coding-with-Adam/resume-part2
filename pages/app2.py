@@ -11,11 +11,6 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Other/Dash_Introduction/intro_bees.csv"
 )
 
-df = df.groupby(["State", "ANSI", "Affected by", "Year", "state_code"])[
-    ["Pct of Colonies Impacted"]
-].mean()
-df.reset_index(inplace=True)
-
 # ------------------------------------------------------------------------------
 def layout():
     return html.Div(
@@ -74,6 +69,9 @@ def layout():
 def update_graph(option_slctd):
 
     dff = df.copy()
+    dff = dff.groupby(["State", "ANSI", "Affected by", "Year", "state_code"])[["Pct of Colonies Impacted"]].mean()
+    dff.reset_index(inplace=True)
+
     dff = dff[dff["Year"] == option_slctd]
     dff = dff[dff["Affected by"] == "Varroa_mites"]
 
