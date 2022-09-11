@@ -1,5 +1,5 @@
 import dash
-from dash import html, dcc, callback, Output, Input
+from dash import html, dcc, Output, Input, callback
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
 import pandas as pd
