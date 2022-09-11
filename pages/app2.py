@@ -7,9 +7,8 @@ import plotly.express as px
 
 dash.register_page(__name__)
 
-df = pd.read_csv(
-    "https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Other/Dash_Introduction/intro_bees.csv"
-)
+df2 = pd.read_csv("assets/intro_bees.csv")
+
 
 # ------------------------------------------------------------------------------
 def layout():
@@ -30,7 +29,7 @@ def layout():
                                         [
                                             dcc.Dropdown(
                                                 id="slct_year",
-                                                options=df.Year.unique(),
+                                                options=df2.Year.unique(),
                                                 value=2015,
                                                 style={"color": "black"},
                                             )
@@ -68,7 +67,7 @@ def layout():
 )
 def update_graph(option_slctd):
 
-    dff = df.copy()
+    dff = df2.copy()
     dff = dff.groupby(["State", "ANSI", "Affected by", "Year", "state_code"])[["Pct of Colonies Impacted"]].mean()
     dff.reset_index(inplace=True)
 
