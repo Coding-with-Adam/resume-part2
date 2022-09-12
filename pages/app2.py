@@ -2,12 +2,12 @@ import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
-import pandas as pd
-import plotly.express as px
+# import pandas as pd
+# import plotly.express as px
 
 dash.register_page(__name__)
 
-df2 = pd.read_csv("assets/intro_bees.csv")
+# df2 = pd.read_csv("assets/intro_bees.csv")
 
 
 # ------------------------------------------------------------------------------
@@ -27,12 +27,7 @@ def layout():
                                 [
                                     dbc.Col(
                                         [
-                                            dcc.Dropdown(
-                                                id="slct_year",
-                                                options=df2.Year.unique(),
-                                                value=2015,
-                                                style={"color": "black"},
-                                            )
+                                            dcc.Markdown("This is it")
                                         ],
                                         width=4,
                                     )
