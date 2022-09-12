@@ -1,5 +1,5 @@
 import dash
-from dash import html, dcc, Output, Input, callback
+from dash import html, dcc
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
 import pandas as pd
@@ -61,29 +61,29 @@ def layout():
 
 
 # ------------------------------------------------------------------------------
-@callback(
-    Output(component_id="my_bee_map", component_property="figure"),
-    Input(component_id="slct_year", component_property="value")
-)
-def update_graph(option_slctd):
+# @callback(
+#     Output(component_id="my_bee_map", component_property="figure"),
+#     Input(component_id="slct_year", component_property="value")
+# )
+# def update_graph(option_slctd):
 
-    dff = df2.copy()
-    dff = dff.groupby(["State", "ANSI", "Affected by", "Year", "state_code"])[["Pct of Colonies Impacted"]].mean()
-    dff.reset_index(inplace=True)
+#     dff = df2.copy()
+#     dff = dff.groupby(["State", "ANSI", "Affected by", "Year", "state_code"])[["Pct of Colonies Impacted"]].mean()
+#     dff.reset_index(inplace=True)
 
-    dff = dff[dff["Year"] == option_slctd]
-    dff = dff[dff["Affected by"] == "Varroa_mites"]
+#     dff = dff[dff["Year"] == option_slctd]
+#     dff = dff[dff["Affected by"] == "Varroa_mites"]
 
-    fig = px.choropleth(
-        data_frame=dff,
-        locationmode="USA-states",
-        locations="state_code",
-        scope="usa",
-        color="Pct of Colonies Impacted",
-        hover_data=["State", "Pct of Colonies Impacted"],
-        color_continuous_scale=px.colors.sequential.YlOrRd,
-        labels={"Pct of Colonies Impacted": "% of Bee Colonies"},
-        template="plotly_dark",
-    )
+#     fig = px.choropleth(
+#         data_frame=dff,
+#         locationmode="USA-states",
+#         locations="state_code",
+#         scope="usa",
+#         color="Pct of Colonies Impacted",
+#         hover_data=["State", "Pct of Colonies Impacted"],
+#         color_continuous_scale=px.colors.sequential.YlOrRd,
+#         labels={"Pct of Colonies Impacted": "% of Bee Colonies"},
+#         template="plotly_dark",
+#     )
 
-    return fig
+#     return fig
